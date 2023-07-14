@@ -1,0 +1,83 @@
+.header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.logo{
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+
+.nav-items>ul{
+    list-style: none;
+    display: flex;
+    margin-right: 2rem;
+}
+
+.nav-items>ul>li{
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+.pizzeria-img{
+    width: 60px;
+}
+
+.res-card{
+    width: 280px;
+    z-index: 1;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    margin: 12px;
+    transition: transform 0.3s ease;
+}
+
+.res-card:hover{
+    transform: scale(1.05);
+}
+
+.res-card>img{
+    width: 220px;
+    height: 150px;
+    margin: 28px;
+}
+
+.res-desc{
+    display: flex;
+    margin: 15px;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.res-name{
+    margin: 10px;
+}
+
+.res-title{
+    font-size: 17px;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.res-food{
+    color: #686b78;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.title{
+    margin-left: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+}
