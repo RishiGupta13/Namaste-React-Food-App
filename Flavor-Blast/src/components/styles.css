@@ -22,7 +22,8 @@
 .nav-items>ul>li{
     padding: 10px;
     margin: 10px;
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .pizzeria-img{
@@ -53,6 +54,7 @@
     margin: 15px;
     justify-content: space-between;
     font-size: 14px;
+    
 }
 
 .res-name{
@@ -79,5 +81,5 @@
 .title{
     margin-left: 15px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
