@@ -1,7 +1,19 @@
+import { useState } from "react";
 import "./styles.css";
 
 export const Header = () => {
 
+  const [log,setLog]=useState("Login");
+ 
+  const changeName=()=>{
+    if(log=="Login"){
+      setLog("Logout");
+    }
+    else{
+      setLog("Login");
+    }
+    
+  }
   
 
   return (
@@ -17,6 +29,7 @@ export const Header = () => {
           <li>Home</li>
           <li>About Us </li>
           <li>Cart</li>
+          <button onClick={changeName}>{log}</button>
         </ul>
       </div>
     </div>
