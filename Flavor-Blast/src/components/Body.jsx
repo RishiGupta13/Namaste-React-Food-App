@@ -1,6 +1,7 @@
 import {RestaurantCard} from './RestaurantCard';
 import { useEffect, useState } from 'react';
 import { Shimer } from './Shimmer';
+import { Link } from 'react-router-dom';
 export const Body = () => {
 
   
@@ -22,8 +23,6 @@ export const Body = () => {
           );
 
           const json=await data.json();
-
-          console.log(json);
           setlistofRestaurants(json?.data?.cards[2]?.data?.data?.cards)
           setfilteredRes(json?.data?.cards[2]?.data?.data?.cards)
 
@@ -73,10 +72,16 @@ export const Body = () => {
         <div className="res-container">
 
         { filteredRes.map((restaurant)=>(
-           <RestaurantCard key={restaurant.id} resData={restaurant}/>
+          <Link 
+          key={restaurant.data.id}
+          to={"/restaurant/"+restaurant.data.id}>
+            <RestaurantCard  resData={restaurant}/>
+          </Link>
         ))}   
         </div>
     </div>
   );
 };
+
+
 
