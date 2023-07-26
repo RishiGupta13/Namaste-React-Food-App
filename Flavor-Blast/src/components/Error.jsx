@@ -5,8 +5,7 @@ export const Error=()=>{
     console.log(err);
     return (
         <div>
-            <h2>OOPS! Seems like you came to a wrong page</h2>
-            <h2>{err.status} : {err.statusText} </h2>
+            <h2>OOPS! Seems like this restaurant is not available at this time, please check other restaurant</h2>
         </div>
     )
 

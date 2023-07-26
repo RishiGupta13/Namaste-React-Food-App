@@ -1,7 +1,7 @@
 import {RestaurantCard} from './RestaurantCard';
 import { useEffect, useState } from 'react';
-import { Shimer } from './Shimmer';
 import { Link } from 'react-router-dom';
+import { useOnlineStatus } from './utils/useOnlineStatus';
 export const Body = () => {
 
   
@@ -25,6 +25,7 @@ export const Body = () => {
           const json=await data.json();
           setlistofRestaurants(json?.data?.cards[2]?.data?.data?.cards)
           setfilteredRes(json?.data?.cards[2]?.data?.data?.cards)
+          console.log(json);
 
   };
 
@@ -32,14 +33,20 @@ export const Body = () => {
   //   return <Shimer/>
   // }
 
+  const status=useOnlineStatus();
+
+  if(status===false){
+    return <h1>Oops seems like you lost your internet Connection</h1>
+  }
+
   return (
     <div className="body">
-
+      <div className='flex justify-end mt-4' >
       <input 
-        className='search'
+        className='search border border-solid border-black rounded-lg '
         type='text'
         value={searchText}
-
+        
         onChange={(e)=>{
           setsearchText(e.target.value);
         }}
@@ -53,21 +60,23 @@ export const Body = () => {
           ));
           setfilteredRes(filteredRes);
          }}
+
+         className=' bg-blue-700 rounded-md px-4 py-2 w-50 text-white font-semibold ml-3 mr-3'
          
       >Search</button>
 
-    
-
-
         <button onClick={()=>{
-            const filteredList=listOfRestaurants.filter(
-              (res)=>
-                res.data.avgRating>4
-            );
-            setlistofRestaurants(filteredList);
+            const filteredList=[...listOfRestaurants].filter(
+              (res)=>res.data.avgRating>4);
+              console.log(filteredList)
+  
+            setfilteredRes(filteredList);
         }}
+        className=' bg-blue-800 rounded-md px-4 py-2 w-50 text-white font-semibold ml- mr-0 '
         >
           Top Rated Restaurants</button>
+
+          </div>
         
         <div className="res-container">
 

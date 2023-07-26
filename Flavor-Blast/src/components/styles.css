@@ -33,28 +33,27 @@
 
 .res-card{
     width: 280px;
+    height: 350px;
     z-index: 1;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     border-radius: 4px;
     margin: 12px;
     transition: transform 0.3s ease;
+    padding: 2px;
 }
 
 .res-card:hover{
     transform: scale(1.05);
 }
 
-.res-card>img{
-    width: 220px;
-    height: 150px;
-    margin: 28px;
-}
+
 
 .res-desc{
     display: flex;
-    margin: 15px;
     justify-content: space-between;
     font-size: 14px;
+    margin: 20px;
+    
     
 }
 
@@ -72,6 +71,7 @@
     color: #686b78;
     font-size: 13px;
     margin-top: 4px;
+    margin-bottom: 2rem;
 }
 
 .res-container{
@@ -83,4 +83,31 @@
     margin-left: 15px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.3rem;
+}
+
+.foodImage{
+    width: 100px;
+}
+
+.icon-star::before {
+    content: "\2605";
+    color:white;
+    background-color: green;
+    margin-right: -12px;
+    padding: 2px;
+    height: 1.5rem;
+     /* Unicode code point for a star symbol (★) */
+    /* Add any additional styles like font size, color, etc. */
+  }
+
+.rating{
+    color: white;
+    background-color: green;
+    margin-left: -2px;
+    padding: 2px;
+    height: 1.5rem;
+}
+
+.rating-star{
+    display: flex;
 }

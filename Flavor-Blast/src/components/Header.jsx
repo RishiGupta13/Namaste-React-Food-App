@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./styles.css";
 import { Link } from "react-router-dom";
+import pizzeria from '../assets/pizzeria.jpg';
 
 export const Header = () => {
 
@@ -20,7 +21,7 @@ export const Header = () => {
   return (
     <div className="header">
       <div className="logo">
-        <img src="src/assets/pizzeria.jpg" className="pizzeria-img"></img>
+        <img src={pizzeria} className="pizzeria-img"></img>
         <h6 className="title">Flavor Blast</h6>
       
       </div>
