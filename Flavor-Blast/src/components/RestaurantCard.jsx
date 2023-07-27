@@ -1,10 +1,13 @@
+/* eslint-disable react/display-name */
+/* eslint-disable no-unsafe-optional-chaining */
+/* eslint-disable react/prop-types */
 import "./styles.css";
 
 // eslint-disable-next-line react/prop-types
 export const RestaurantCard = (props) => {
     const {resData} = props;
 
-    const {name,cuisines,costForTwoString,deliveryTime,avgRating,cloudinaryImageId}=resData?.data;
+    const {name,cuisines,costForTwo,avgRating,cloudinaryImageId}=resData?.info;
   return (
     <div className="res-card  ">
         <img className="w-56 h-40 ml-6 mt-7 rounded-md"
@@ -24,13 +27,29 @@ export const RestaurantCard = (props) => {
           </div>
             
             <div>•</div>
-            <div>{deliveryTime} mins</div>
+            <div>{resData.info.sla.deliveryTime} mins</div>
             <div>•</div>
-            <div>{costForTwoString}</div>            
+            <div>{costForTwo}</div>            
         </div>
 
 
     </div>
   )
+};
+
+
+//HOC
+export const withPromotedLabel=(RestaurantCard)=>{
+  return (props) => {
+    return (
+      <div>
+        <label className="text-white bg-black rounded-lg p-2 absolute m-2 ">
+          Promoted
+        </label>
+        <RestaurantCard  {...props}/>
+      </div>
+    )
+  }
 }
+withPromotedLabel.displayName="ResPromoted";
 

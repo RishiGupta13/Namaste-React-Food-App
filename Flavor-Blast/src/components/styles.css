@@ -52,7 +52,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 14px;
-    margin: 20px;
+    margin: 12px;
     
     
 }
@@ -71,7 +71,7 @@
     color: #686b78;
     font-size: 13px;
     margin-top: 4px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .res-container{
@@ -93,8 +93,7 @@
     content: "\2605";
     color:white;
     background-color: green;
-    margin-right: -12px;
-    padding: 2px;
+    padding: 4px;
     height: 1.5rem;
      /* Unicode code point for a star symbol (★) */
     /* Add any additional styles like font size, color, etc. */
@@ -103,11 +102,7 @@
 .rating{
     color: white;
     background-color: green;
-    margin-left: -2px;
-    padding: 2px;
+    padding: 4px;
     height: 1.5rem;
 }
 
-.rating-star{
-    display: flex;
-}

@@ -1,16 +1,16 @@
-import {RestaurantCard} from './RestaurantCard';
+import {RestaurantCard,withPromotedLabel} from './RestaurantCard';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useOnlineStatus } from './utils/useOnlineStatus';
+
 export const Body = () => {
 
   
   const [listOfRestaurants,setlistofRestaurants]=useState([]);
   const [filteredRes,setfilteredRes]=useState([]);
-
-
   const [searchText,setsearchText] =useState("");
 
+  const RestaurantCardPromoted=withPromotedLabel(RestaurantCard);
 
 
   useEffect(()=>{
@@ -19,12 +19,13 @@ export const Body = () => {
 
   const fetchData= async ()=>{
         const data=await fetch(
-          "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352156&lng=77.6199608&page_type=DESKTOP_WEB_LISTING"
+          "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352156&lng=77.6199608&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
           );
+          
 
           const json=await data.json();
-          setlistofRestaurants(json?.data?.cards[2]?.data?.data?.cards)
-          setfilteredRes(json?.data?.cards[2]?.data?.data?.cards)
+          setlistofRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+          setfilteredRes(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
           console.log(json);
 
   };
@@ -41,7 +42,7 @@ export const Body = () => {
 
   return (
     <div className="body">
-      <div className='flex justify-end mt-4' >
+      <div className='flex justify-end mt-5 mb-4' >
       <input 
         className='search border border-solid border-black rounded-lg '
         type='text'
@@ -55,24 +56,24 @@ export const Body = () => {
       <button
          onClick={()=>{
           const filteredRes=listOfRestaurants.filter((res)=>(
-            res.data.name.toLowerCase().includes(searchText.toLowerCase())
+            res.info.name.toLowerCase().includes(searchText.toLowerCase())
             
           ));
           setfilteredRes(filteredRes);
          }}
 
-         className=' bg-blue-700 rounded-md px-4 py-2 w-50 text-white font-semibold ml-3 mr-3'
+         className=' bg-orange-500 rounded-md px-4 py-2 w-50 text-white font-semibold ml-3 mr-3'
          
       >Search</button>
 
         <button onClick={()=>{
             const filteredList=[...listOfRestaurants].filter(
-              (res)=>res.data.avgRating>4);
-              console.log(filteredList)
+              (res)=>res.info.avgRating>4);
+              
   
             setfilteredRes(filteredList);
         }}
-        className=' bg-blue-800 rounded-md px-4 py-2 w-50 text-white font-semibold ml- mr-0 '
+        className=' bg-orange-500 rounded-md px-4 py-2 w-50 text-white font-semibold ml- mr-14 '
         >
           Top Rated Restaurants</button>
 
@@ -82,11 +83,22 @@ export const Body = () => {
 
         { filteredRes.map((restaurant)=>(
           <Link 
-          key={restaurant.data.id}
-          to={"/restaurant/"+restaurant.data.id}>
-            <RestaurantCard  resData={restaurant}/>
+          key={restaurant.info.id}
+          to={"/restaurant/"+restaurant.info.id}>
+            {
+              restaurant.info.promoted?(
+                <RestaurantCardPromoted  resData={restaurant}/>
+              ) : (
+                <RestaurantCard  resData={restaurant}/>
+              )
+              
+            }
+           
+            
           </Link>
-        ))}   
+        ))
+
+        }   
         </div>
     </div>
   );

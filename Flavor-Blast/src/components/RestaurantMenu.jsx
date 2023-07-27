@@ -3,11 +3,15 @@ import { Shimer } from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { useRestaurantmenu } from "./utils/useRestaurantmenu";
 import './styles.css'
+import { useState } from "react";
+import { RestaurantCategory } from "./RestaurantCategory";
 export const RestaurantMenu = () => {
+    const [showIndex,setshowIndex]=useState(null);
 
   const { resId } = useParams();
 
   const resInfo=useRestaurantmenu(resId);
+
 
   if (resInfo === null) return <Shimer />;
 
@@ -15,29 +19,42 @@ export const RestaurantMenu = () => {
     // eslint-disable-next-line no-unsafe-optional-chaining
     resInfo?.cards[0]?.card?.card?.info;
 
+  // eslint-disable-next-line no-unused-vars
   const { itemCards } =
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
 
-  console.log(itemCards);
+
+  const categories=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    (c)=>
+        c.card?.card?.["@type"]===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
+
+  console.log(categories);
 
   return (
-    <div className="menu">
-      <h1>{name}</h1>
+    <div className=" text-center">
+      <h1 className="font-bold my-6 text-2xl">{name}</h1>
       <p>
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
-      <h2>Menu</h2>
-      <ul>
-        {itemCards.map((item) => (
-          <li key={item.card.info.id}>
-            {item.card.info.name} -{" Rs."}
-            {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
-            <div>{item.card.info.description}</div>
-            <img className="foodImage" src={"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" + item.card.info.imageId}></img>
+      {
+        categories.map((category,index)=>{
+            return (
+                <RestaurantCategory 
+                key ={category?.card?.card.title}
+                data={category?.card?.card}
+                showItems={ index==showIndex ? true : false}
+                setshowIndex={()=>setshowIndex(index)}>
 
-          </li>
-        ))}
-      </ul>
+            </RestaurantCategory>
+
+            )
+            
+        })
+      }
+      
+
     </div>
   );
 };
