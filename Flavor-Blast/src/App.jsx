@@ -3,16 +3,20 @@ import { Header} from './components/Header';
 import { Body} from './components/Body'
 import { About } from './components/About';
 import {createBrowserRouter,Outlet} from "react-router-dom";
-import { Contact } from './components/Contact';
+import { Cart } from './components/Cart';
 import { Error } from './components/Error';
 import { RestaurantMenu } from './components/RestaurantMenu';
+import { Provider } from 'react-redux';
+import { appStore } from './components/utils/appStore';
 
 function App() {
 
   return (
     <>
+      <Provider store={appStore}>
       <Header/>
       <Outlet/>
+      </Provider>
     </>
   )
 }
@@ -32,8 +36,8 @@ function App() {
         element:<About/>
       },
       {
-        path:"/contact",
-        element:<Contact/>
+        path:"/cart",
+        element:<Cart/>
       },
       {
         path:"/restaurant/:resId",

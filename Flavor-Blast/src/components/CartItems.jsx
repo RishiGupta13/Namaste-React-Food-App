@@ -1,16 +1,15 @@
 import { useDispatch } from "react-redux";
-import { addItem } from "./utils/cartSlice";
+import { removeItem } from "./utils/cartSlice";
 
 /* eslint-disable react/prop-types */
-export const ItemList = ({ items }) => {
-  
- const dispatch=useDispatch();
-  const handleAddItem=(item)=>{
-    dispatch(addItem(item));
-    
-  }
+export const CartItems = ({ items }) => {
 
-  console.log(items);
+  const dispatch=useDispatch();
+
+  const handleDeleteItem=(id)=>{
+    dispatch(removeItem(id));
+
+  }
 
   return (
     <div>
@@ -33,14 +32,15 @@ export const ItemList = ({ items }) => {
           </div>
 
           <div className="w-3/12 p-4">
-            <div className="absolute">
+          <div className="absolute">
               <button
                 className="p-2 mx-8 my-10 rounded-lg bg-white text-green-800 shadow-lg hover:bg-gray-200"
-                onClick={()=>handleAddItem(item)}
+                onClick={()=>handleDeleteItem(item.card.info.id)}
               >
-                Add +
+                Delete
               </button>
             </div>
+            
             <img
               src={
                 "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" +

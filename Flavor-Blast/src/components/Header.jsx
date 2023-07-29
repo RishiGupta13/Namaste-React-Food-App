@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./styles.css";
 import { Link } from "react-router-dom";
 import pizzeria from '../assets/pizzeria.jpg';
+import { useSelector } from "react-redux";
 
 export const Header = () => {
 
@@ -16,6 +17,8 @@ export const Header = () => {
     }
     
   }
+
+  const cartItems=useSelector((store)=>store.cart.items);
   
 
   return (
@@ -38,8 +41,8 @@ export const Header = () => {
            </li>
 
           <li>
-            <Link to="/contact">
-            Contact us</Link> 
+            <Link to="/cart">
+            Cart-{cartItems.length}</Link> 
            </li>
           <button onClick={changeName}>{log}</button>
         </ul>
