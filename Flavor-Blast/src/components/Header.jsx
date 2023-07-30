@@ -25,7 +25,7 @@ export const Header = () => {
     <div className="header">
       <div className="logo">
         <img src={pizzeria} className="pizzeria-img"></img>
-        <h6 className="title">Flavor Blast</h6>
+        <h6 className="title font-bold">Eat Street</h6>
       
       </div>
 
