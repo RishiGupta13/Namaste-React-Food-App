@@ -33,7 +33,7 @@
 
 .res-card{
     width: 280px;
-    height: 350px;
+    height: 320px;
     z-index: 1;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     border-radius: 4px;
@@ -52,7 +52,13 @@
     display: flex;
     justify-content: space-between;
     font-size: 14px;
-    margin: 12px;
+    margin-top: 12px;
+    margin-left: 12px;
+    margin-right: 12px;
+
+    margin-bottom: 0.5 rem;
+
+
     
     
 }

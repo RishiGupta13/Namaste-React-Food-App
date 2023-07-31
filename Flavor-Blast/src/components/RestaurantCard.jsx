@@ -16,8 +16,8 @@ export const RestaurantCard = (props) => {
         </img>
 
         <div className="res-name">
-            <div className="res-title">{name}</div>
-            <div className="res-food">{cuisines.join(", ")}</div>
+            <div className="res-title">{name.length<15?name:name.substring(0,20)+"..."}</div>
+            <div className="res-food">{cuisines.join(",").length<15? cuisines.join(","): cuisines.join(",").substring(0,35)+"..."}</div>
         </div>
 
         <div className="res-desc">
