@@ -42,9 +42,9 @@ export const Body = () => {
 
   return (
     <div className="body">
-      <div className='flex justify-end mt-5 mb-4' >
+      <div className='flex justify-center mt-5 mb-4' >
       <input 
-        className='search border border-solid border-black rounded-lg '
+        className='search border border-solid p-1 border-black rounded-lg '
         type='text'
         value={searchText}
         
@@ -75,7 +75,7 @@ export const Body = () => {
         }}
         className=' bg-orange-500 rounded-md px-4 py-2 w-50 text-white font-semibold ml- mr-14 '
         >
-          Top Rated Restaurants</button>
+          Top Rated</button>
 
           </div>
         
